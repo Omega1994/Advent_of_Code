@@ -6,6 +6,17 @@ def lottery_game():
         won_values.append(won_val)
     return sum(won_values)
 
+
+def compare_winning_numbers(winning, your):
+    won = 0
+    for number in winning:
+        if number in your:
+            if won == 0:
+                won += 1
+            else:
+                won = won * 2
+    return won
+
 def lottery_game_appending():
     games = read_file()
     prefix = 'Game '
@@ -20,27 +31,30 @@ def lottery_game_appending():
 
     return sum
 
-
 def create_lookup_games(games, prefix):
     lookup = {}
     for index, game in enumerate(games):
         lookup.update({(prefix + str(index)): 1})
     return lookup
 
+def compare_with_winning(winning, your):
+    won = 0
+    for number in winning:
+        if number in your:
+            won += 1
+    return won
+
 def update_lookup(lookup, prefix, index, numbers_in_common):
     label_current_entry = prefix + str(index)
     quantity = lookup.get(label_current_entry)
     for i in range(1, numbers_in_common + 1):
         label_updated_entry = prefix + str(index + i)
-        for j in range(quantity):
-            if lookup.__contains__(label_updated_entry):
-                amount = lookup.get(label_updated_entry) + 1
-                lookup.update({label_updated_entry: amount})
-            else:
-                break
+        if lookup.__contains__(label_updated_entry):
+            amount = lookup.get(label_updated_entry) + quantity
+            lookup.update({label_updated_entry: amount})
+        else:
+            break
     return lookup
-
-
 
 def read_file():
     path = '../AoC-Input/aoc-4-input.txt'
@@ -53,23 +67,6 @@ def read_file():
         your_numbers = reading_numbers(splitting_winning_numbers[1])
         games.append([winning, your_numbers])
     return games
-
-def compare_winning_numbers(winning, your):
-    won = 0
-    for number in winning:
-        if number in your:
-            if won == 0:
-                won += 1
-            else:
-                won = won * 2
-    return won
-
-def compare_with_winning(winning, your):
-    won = 0
-    for number in winning:
-        if number in your:
-            won += 1
-    return won
 
 def reading_numbers(input_val):
     number = []
