@@ -57,7 +57,7 @@ def check_instances(instances, dict_stone_accessable):
 
 def read_game_file():
     #path = '../Advent_of_Code/AoCs/AoC2/2023-02-1-input.txt'
-    path = '2023-02-1-input.txt'
+    path = '../AoC-Input/2023-02-1-input.txt'
     listed_games = []
     for lines in open(path):
         lines = lines.rstrip('\n')

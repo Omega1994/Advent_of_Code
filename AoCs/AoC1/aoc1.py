@@ -1,7 +1,7 @@
 def collectFromList():
     result_sum = 0
     #path = '../Advent_of_Code/AoCs/AoC1/2023-01-1-input.txt'
-    path = '2023-01-1-input.txt'
+    path = '../AoC-Input/2023-01-1-input.txt'
     for line_lf in open(path):
         line_strip = line_lf.rstrip()
         altered_val = digit_in_string(line_strip)
